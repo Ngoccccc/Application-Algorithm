@@ -2,32 +2,43 @@
 
 using namespace std;
 
-int x[10];
-int f = 0, m0, n, m;
-void printArray(int a[], int n)
+int x[11];
+int m, n;
+
+void solution()
 {
     for (int i = 1; i <= n; i++)
     {
-        cout << a[i];
+        cout << x[i] << " ";
     }
     cout << endl;
 }
-
+bool check()
+{
+    int sum = 0;
+    for (int i = 1; i <= n; i++)
+    {
+        sum += x[i];
+    }
+    return sum == m;
+}
 void Try(int k)
 {
-    if (k == n)
+    for (int i = 1; i <= m - n + 1; i++)
     {
-        x[k] = m - f;
-        printArray(x, n);
-    }
-    m0 = m - f - (n - k);
-    for (int v = 1; v <= m0; v++)
-    {
-        x[k] = v;
-        f = f + v;
-        if (k < n)
+        x[k] = i;
+        if (k == n)
+        {
+            if (check())
+            {
+                solution();
+            }
+        }
+        else
+        {
             Try(k + 1);
-        f = f - v;
+        }
+        x[k] = 0;
     }
 }
 

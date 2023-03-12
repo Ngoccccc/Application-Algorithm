@@ -5,7 +5,6 @@ using namespace std;
 int main()
 {
     vector<string> listAcc;
-    set<string> listAcc1;
     map<string, int> total_money_acc, count_transaction;
     string from_account, to_account, time, atm;
     int check_from = 0;
@@ -21,8 +20,6 @@ int main()
             break;
         }
         cin >> to_account >> money >> time >> atm;
-        listAcc1.insert(from_account);
-        listAcc1.insert(to_account);
         total_transactions++;
         total_money += money;
         total_money_acc[from_account] += money;
@@ -64,9 +61,10 @@ int main()
         }
         else if (call == "?list_sorted_accounts")
         {
-            for (auto &str : listAcc1)
+            sort(listAcc.begin(), listAcc.end());
+            for (auto it : listAcc)
             {
-                cout << str << " ";
+                cout << it << " ";
             }
             cout << endl;
         }
